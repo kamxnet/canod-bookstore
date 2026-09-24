@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://canod.store/sitemap.xml

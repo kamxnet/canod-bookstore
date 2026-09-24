@@ -1,0 +1,13 @@
+{
+  "name": "CANOD",
+  "url": "https://canod.store",
+  "description": "Practical books, large-print puzzles, coloring books, and journals from CANOD, an independent Canadian publisher.",
+  "contactEmail": "",
+  "contactPlaceholder": "hello@canod.store",
+  "newsletter": {
+    "action": "",
+    "emailField": "email",
+    "hiddenFields": {},
+    "privacyUrl": ""
+  }
+}

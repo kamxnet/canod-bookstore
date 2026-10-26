@@ -39,12 +39,7 @@ const detail = await readFile(path.join(docs,'the-accidental-project-manager/ind
 assert(detail.includes('9798174213630'));
 assert(detail.includes('US$9.99'));
 assert(detail.includes('https://www.amazon.ca/dp/B0HJZZLKCG'));
-assert(!homepage.includes('Paperback <b>for(const [category,count] of [['word-search',5],['coloring-books',2],['logbooks-journals',3],['practical-guides',1]]) {
-  const html=await readFile(path.join(docs,category,'index.html'),'utf8');
-  assert.equal((html.match(/class="book-card"/g)||[]).length,count,`${category}: category count`);
-}
-console.log(`Checked ${htmlFiles.length} HTML pages: 11 titles, category counts, local assets, links, anchors, and live featured-book purchase links passed.`);
-));
+assert(!homepage.includes('Paperback <b>$'));
 for(const [category,count] of [['word-search',5],['coloring-books',2],['logbooks-journals',3],['practical-guides',1]]) {
   const html=await readFile(path.join(docs,category,'index.html'),'utf8');
   assert.equal((html.match(/class="book-card"/g)||[]).length,count,`${category}: category count`);

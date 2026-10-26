@@ -30,9 +30,23 @@ for(const file of htmlFiles) {
 const homepage = await readFile(path.join(docs,'index.html'),'utf8');
 assert.equal((homepage.match(/class="book-card"/g)||[]).length,11);
 for(const book of books) assert(homepage.includes(`id="${book.id}"`));
-assert.equal((homepage.match(/data-amazon-placeholder/g)||[]).length,12);
+assert.equal((homepage.match(/data-amazon-placeholder/g)||[]).length,0);
+assert(homepage.includes('https://www.amazon.com/dp/B0HJZZLKCG'));
+assert(homepage.includes('https://www.amazon.com/dp/B0HJZ79VLC'));
+assert(homepage.includes('mailto:hello@canod.ca'));
+assert(homepage.includes('the-accidental-project-manager/'));
+const detail = await readFile(path.join(docs,'the-accidental-project-manager/index.html'),'utf8');
+assert(detail.includes('9798174213630'));
+assert(detail.includes('US$9.99'));
+assert(detail.includes('https://www.amazon.ca/dp/B0HJZZLKCG'));
+assert(!homepage.includes('Paperback <b>for(const [category,count] of [['word-search',5],['coloring-books',2],['logbooks-journals',3],['practical-guides',1]]) {
+  const html=await readFile(path.join(docs,category,'index.html'),'utf8');
+  assert.equal((html.match(/class="book-card"/g)||[]).length,count,`${category}: category count`);
+}
+console.log(`Checked ${htmlFiles.length} HTML pages: 11 titles, category counts, local assets, links, anchors, and live featured-book purchase links passed.`);
+));
 for(const [category,count] of [['word-search',5],['coloring-books',2],['logbooks-journals',3],['practical-guides',1]]) {
   const html=await readFile(path.join(docs,category,'index.html'),'utf8');
   assert.equal((html.match(/class="book-card"/g)||[]).length,count,`${category}: category count`);
 }
-console.log(`Checked ${htmlFiles.length} HTML pages: 11 titles, category counts, local assets, links, anchors, and placeholder links passed.`);
+console.log(`Checked ${htmlFiles.length} HTML pages: 11 titles, category counts, local assets, links, anchors, and live featured-book purchase links passed.`);

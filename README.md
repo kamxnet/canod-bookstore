@@ -13,6 +13,7 @@ Source repository: https://github.com/kamxnet/canod-bookstore
 - `/coloring-books/` — 2 titles.
 - `/logbooks-journals/` — 3 titles.
 - `/practical-guides/` — 1 title.
+- `/the-accidental-project-manager/` — focused sales page with paperback and Kindle links.
 - Custom 404, sitemap, canonical metadata, and favicon.
 
 Collections use paths on one domain. Separate subdomains are unnecessary for this catalog and are not configured.
@@ -27,15 +28,15 @@ npm run check
 npm run dev
 ```
 
-Edit `content/books.json` for titles, descriptions, bylines, display prices, cover paths, and Amazon links. `CANOD` is an editable house byline placeholder for every title; replace it with each book's published author name before launch. The dollar prices are reproduced exactly as supplied without an invented currency designation; verify the marketplace/currency before publishing real sales links.
+Edit `content/books.json` for titles, descriptions, bylines, display prices, cover paths, and Amazon links. Verify each title's published byline, cover, marketplace and currency before enabling its purchase links. The featured book has been verified; other entries are labelled as the CANOD collection with their listings still being verified.
 
 The generator writes the complete publication to `docs/`. Commit both source and regenerated `docs/` when updating. No browser-side API keys or secrets are required.
 
 ## Replace the requested placeholders
 
-1. **Amazon links:** replace each `amazonUrl: "#"` with the title's HTTPS Amazon product URL. A missing link displays an honest “coming soon” message. It never simulates a purchase. All 12 initial purchase links are `#` exactly as requested.
+1. **Amazon links:** replace each remaining `amazonUrl: "#"` with the title's verified HTTPS Amazon product URL. A missing link displays “Listing being verified” and does not render a purchase button.
 2. **Cover images:** put the real JPG, PNG, WebP, or SVG cover in `assets/covers/`, update its `cover` path in `content/books.json`, then build. Portrait 2:3 images work best. Existing images are never overwritten by the generator. Current SVGs are typography-only stand-ins, not approved cover designs.
-3. **Contact:** set `contactEmail` in `content/site.json` to an active mailbox. Until then, `hello@canod.store` is visibly presented as a coming-soon address, without a mailto link.
+3. **Contact:** `contactEmail` in `content/site.json` is set to the active CANOD mailbox, `hello@canod.ca`.
 4. **Newsletter:** the email field and Subscribe button are disabled until a real provider is configured. No address is saved locally, sent elsewhere, or represented as subscribed. Set `newsletter.action` to your provider's public HTTPS form POST URL, `emailField` to the provider's expected field name, and `hiddenFields` to its non-secret form fields. Add the provider's `privacyUrl`. Confirm the provider's opt-in, consent, unsubscribe, and success/error pages before enabling; no API secret belongs here. The browser then submits directly to that provider, which owns storage and confirmation. Do not use an API-only endpoint.
 
 ## Publish to GitHub Pages
@@ -45,7 +46,7 @@ This bookstore uses the separate **kamxnet/canod-bookstore** repository. Do not 
 1. Repository created: `kamxnet/canod-bookstore` (public).
 2. Website source and ready-to-publish `docs/` files are on its `main` branch.
 3. In **Settings → Pages**, set **Deploy from a branch**, branch **main**, folder **/docs**, and save.
-4. Set the custom domain to **canod.store**. The included `docs/CNAME` already contains it.
+4. The existing custom domain is **www.canod.store**. The included `docs/CNAME` preserves it.
 5. At the domain's DNS provider, set the apex (`@`) A records to the four GitHub Pages addresses below. Replace conflicting web A/AAAA records only; preserve mail, TXT, and verification records.
 
 | Type | Host | Value |
@@ -60,8 +61,14 @@ This bookstore uses the separate **kamxnet/canod-bookstore** repository. Do not 
 
 GitHub reference: https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site
 
-For a temporary project URL before DNS is ready, omit `docs/CNAME` and set `site.url` to the actual GitHub Pages URL before rebuilding. The main routes and assets are relative and work beneath a repository path; update the 404 root links to the project path if using that temporary URL. The delivered configuration targets `https://canod.store`.
+The live configuration targets `https://www.canod.store`. Preserve the existing DNS and Pages configuration when updating site content.
 
 ## Status
 
-Website implementation is complete. Publishing and DNS are separate account operations and must be verified before describing the site as live. Newsletter delivery is intentionally unconfigured. Amazon URLs, covers, contact, and bylines remain editable placeholders as documented above.
+The existing bookstore is live on its custom domain. Verify deployment after every update. Newsletter delivery is unconfigured. The featured book is ready for purchase through Amazon; the remaining titles require individual listing verification.
+
+## First-sale campaign: October 26, 2026
+
+The featured book now uses its published byline, cover, verified Amazon.com paperback and Kindle destinations, and a dedicated `/the-accidental-project-manager/` sales page. US prices are dated and explicitly labelled. The contact mailbox is `hello@canod.ca`. Other catalog entries remain unpublished purchase paths until their individual listings are checked; their former placeholder Buy buttons and unverified prices have been removed.
+
+Canonical site: https://www.canod.store/ (the existing domain redirects there). No customer checkout, mailing-list collection, ad spend or new subscription is introduced. Amazon remains the checkout, fulfilment and returns provider. Keep this section and the content files current when additional listings are verified.
